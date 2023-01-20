@@ -6,9 +6,11 @@ let computerGuess = Math.floor(Math.random() * 100);
 console.log(computerGuess);
 function wrongNumber(firstNumber, secondNumber) {
   if (firstNumber > secondNumber) {
-    console.log("Number too big, try again");
+    readline.setPrompt("Too Big");
+      readline.prompt();
   } else if (firstNumber < secondNumber) {
-    console.log("Number too small, try again");
+    readline.setPrompt("Too Small");
+      readline.prompt();
   }
 }
 let recursiveAsyncReadline = function () {
@@ -22,13 +24,16 @@ let recursiveAsyncReadline = function () {
       console.log("Nice!!!");
       readline.close();
     } else {
-      wrongNumber(playerNumber, computerGuess)
+      readline.setPrompt(wrongNumber(playerNumber, computerGuess));
+      readline.prompt();
       readline.on("line", (playerNumber) => {
         if (playerNumber == computerGuess) {
           console.log("Nice!!!");
           readline.close();
-        } else {
-          wrongNumber(playerNumber, computerGuess)
+        } 
+        else {
+          readline.setPrompt(wrongNumber(playerNumber, computerGuess));
+          readline.prompt();
         }
       });
     }
