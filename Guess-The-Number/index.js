@@ -3,21 +3,35 @@ const readline = require("readline").createInterface({
   output: process.stdout,
 });
 let computerGuess = Math.floor(Math.random() * 100);
-let recursiveAsyncReadline = function () {
-  readline.question("Guess the number (0-100): ", (number) => {
-    let playerNumber = Number(number)
-  
-   if(playerNumber > 100 || playerNumber < 0) {
-    console.log("Please enter a valid number");
-   } else if (playerNumber > computerGuess) {
-    console.log("Number too big")
-   } else if (playerNumber < computerGuess) {
-    console.log("Number too small");
-   } else if(playerNumber === computerGuess) {
-    console.log("Nice you guessed it");
-    readline.close();
-   }
-    
-  });
+console.log(computerGuess);
+function wrongNumber(firstNumber, secondNumber) {
+  if (firstNumber > secondNumber) {
+    console.log("Number too big, try again");
+  } else if (firstNumber < secondNumber) {
+    console.log("Number too small, try again");
+  }
 }
-recursiveAsyncReadline();
+let recursiveAsyncReadline = function () {
+  readline.question("Guess the number (0-100): \n", (number) => {
+    let playerNumber = Number(number);
+
+    if (playerNumber > 100 || playerNumber < 0) {
+      readline.setPrompt("Please enter a valid number \n");
+      readline.prompt();
+    } else if (playerNumber == computerGuess) {
+      console.log("Nice!!!");
+      readline.close();
+    } else {
+      wrongNumber(playerNumber, computerGuess)
+      readline.on("line", (playerNumber) => {
+        if (playerNumber == computerGuess) {
+          console.log("Nice!!!");
+          readline.close();
+        } else {
+          wrongNumber(playerNumber, computerGuess)
+        }
+      });
+    }
+  });
+};
+recursiveAsyncReadline()
