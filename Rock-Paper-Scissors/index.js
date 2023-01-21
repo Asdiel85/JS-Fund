@@ -33,33 +33,34 @@ let readInput = function () {
     }
 
     if(playerTurn === rock || playerTurn === paper || playerTurn === scissors) {
+      console.log(`You chose ${playerTurn}`)
     console.log(`The computer chose ${computerMove}`);
     switch (playerTurn) {
       case rock:
         if (computerMove === scissors) {
-          console.log("You won");
+          console.log("You won!");
         } else if (computerMove === paper) {
-          console.log("You lost");
+          console.log("You lost!");
         } else if (computerMove === rock) {
-          console.log("Draw");
+          console.log("The game is draw!");
         }
         break;
       case paper:
         if (computerMove === scissors) {
-          console.log("You lost");
+          console.log("You lost!");
         } else if (computerMove === paper) {
-          console.log("Draw");
+          console.log("The game is draw!");
         } else if (computerMove === rock) {
-          console.log("You won");
+          console.log("You won!");
         }
         break;
       case scissors:
         if (computerMove === scissors) {
-          console.log("Draw");
+          console.log("The game is draw!");
         } else if (computerMove === paper) {
-          console.log("You won");
+          console.log("You won!");
         } else if (computerMove === rock) {
-          console.log("You lost");
+          console.log("You lost!");
         }
         break;
     }
