@@ -28,8 +28,11 @@ let readInput = function () {
     } else if (playerTurn == "s" || playerTurn == "scissors") {
       playerTurn = scissors;
     } else {
-      //TODO Implement logic
+      console.log("Please enter valid input (r, p , s)");
+      readInput()
     }
+
+    if(playerTurn === rock || playerTurn === paper || playerTurn === scissors) {
     console.log(`The computer chose ${computerMove}`);
     switch (playerTurn) {
       case rock:
@@ -60,6 +63,8 @@ let readInput = function () {
         }
         break;
     }
+    readline.close();
+  }
   });
 };
 
